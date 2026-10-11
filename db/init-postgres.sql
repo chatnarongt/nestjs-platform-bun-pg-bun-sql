@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS world (
+    id SERIAL PRIMARY KEY,
+    random_number INT NOT NULL
+);
+
+INSERT INTO world (random_number)
+SELECT FLOOR(RANDOM() * 1000001)::INT
+FROM generate_series(1, 100000)
+WHERE NOT EXISTS (SELECT 1 FROM world);

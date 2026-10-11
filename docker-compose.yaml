@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: "${DATABASE_USER}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD:?set DATABASE_PASSWORD}"
+      POSTGRES_DB: "${DATABASE_NAME}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init-postgres.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\"" ]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 10s

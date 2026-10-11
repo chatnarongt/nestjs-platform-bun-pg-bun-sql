@@ -12,5 +12,5 @@ COPY package.json bun.lock ./
 RUN bun install --production --frozen-lockfile
 COPY --from=builder /app/dist ./dist
 USER bun
-EXPOSE 8080
+EXPOSE 3000
 CMD ["bun", "dist/main.js"]

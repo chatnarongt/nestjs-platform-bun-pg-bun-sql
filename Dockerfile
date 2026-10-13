@@ -1,11 +1,11 @@
-FROM oven/bun:1.4.2-alpine AS builder
+FROM oven/bun:1.4.3-alpine AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-FROM oven/bun:1.4.2-alpine
+FROM oven/bun:1.4.3-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 COPY package.json bun.lock ./

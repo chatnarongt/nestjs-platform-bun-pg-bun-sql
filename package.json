@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-platform-bun-pg",
+  "name": "nestjs-platform-bun-pg-bun-sql",
   "version": "0.0.1",
   "description": "",
   "author": "",
